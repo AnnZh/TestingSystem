@@ -1,6 +1,6 @@
 using System;
 
-namespace TrainingProject.Web
+namespace TestingSystem.Web
 {
     public class WeatherForecast
     {

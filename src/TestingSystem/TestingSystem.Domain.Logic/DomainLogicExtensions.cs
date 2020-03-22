@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
-using TrainingProject.Data;
+using TestingSystem.Data;
 
-namespace TrainingProject.Domain.Logic
+namespace TestingSystem.Domain.Logic
 {
     public static class DomainLogicExtensions
     {

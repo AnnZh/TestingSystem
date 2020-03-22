@@ -16,9 +16,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TrainingProject.Common\TrainingProject.Common.csproj" />
-      <ProjectReference Include="..\TrainingProject.Domain.Logic\TrainingProject.Domain.Logic.csproj" />
-      <ProjectReference Include="..\TrainingProject.Domain\TrainingProject.Domain.csproj" />
+      <ProjectReference Include="..\TestingSystem.Common\TestingSystem.Common.csproj" />
+      <ProjectReference Include="..\TestingSystem.Domain.Logic\TestingSystem.Domain.Logic.csproj" />
+      <ProjectReference Include="..\TestingSystem.Domain\TestingSystem.Domain.csproj" />
     </ItemGroup>
 
 </Project>

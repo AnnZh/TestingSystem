@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TrainingProject.Data
+namespace TestingSystem.Data
 {
     public static class DataExtensions
     {
