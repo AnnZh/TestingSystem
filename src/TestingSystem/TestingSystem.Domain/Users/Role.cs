@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace TestingSystem.Domain
+namespace TestingSystem.Domain.Users
 {
     public class Role
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
     }
 }
