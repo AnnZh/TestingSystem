@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TestingSystem.Data;
 using TestingSystem.Domain.Logic;
+using TestingSystem.Domain.Logic.Interfaces;
+using TestingSystem.Domain.Logic.Managers;
 
 namespace TestingSystem.Web
 {
@@ -32,6 +36,9 @@ namespace TestingSystem.Web
             services.AddOpenApiDocument();
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup).Assembly);
+
+            services.AddDbContext<ITestingSystemContext, TestingSystemContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TestingSystemContext")));
+            //services.AddScoped<IUserManager, UserManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
