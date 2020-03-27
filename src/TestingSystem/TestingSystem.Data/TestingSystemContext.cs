@@ -16,6 +16,12 @@ namespace TestingSystem.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<GroupOfTests> GroupsOfTests { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<VariantOfAnswer> VariantsOfAnswer { get; set; }
+        public DbSet<TestResponse> TestResponses { get; set; }
+        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
