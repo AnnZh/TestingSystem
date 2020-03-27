@@ -12,9 +12,9 @@ namespace TestingSystem.Domain.Tests
         public string Title { get; set; }
         public Guid AuthorId { get; set; }
         public User Author { get; set; }
-        public DateTime CreatedDate { get; set; }
         public Guid GroupOfTestsId { get; set; }
         public GroupOfTests GroupOfTests { get; set; }
+        public DateTime CreatedDate { get; set; }
         public HashSet<Question> Questions { get; set; }
         public HashSet<TestResponse> TestResponses { get; set; }
     }

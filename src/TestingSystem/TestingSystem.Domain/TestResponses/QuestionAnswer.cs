@@ -9,6 +9,8 @@ namespace TestingSystem.Domain.TestResponses
         public Guid Id { get; set; }
         public Guid QuestionId { get; set; }
         public Question Question { get; set; }
+        public Guid TestResponseId { get; set; }
+        public TestResponse TestResponse { get; set; }
         public HashSet<VariantOfAnswer> Variants { get; set; }
     }
 }
