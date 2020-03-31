@@ -22,6 +22,7 @@ namespace TestingSystem.Data
         public DbSet<VariantOfAnswer> VariantsOfAnswer { get; set; }
         public DbSet<TestResponse> TestResponses { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public DbSet<ChoosenVariant> ChoosenVariants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -72,7 +73,7 @@ namespace TestingSystem.Data
                 .HasMaxLength(30);
 
             modelBuilder.Entity<Test>()
-               .HasKey(x => x.Id);
+                .HasKey(x => x.Id);
             modelBuilder.Entity<Test>()
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
@@ -88,22 +89,25 @@ namespace TestingSystem.Data
             modelBuilder.Entity<Test>()
                 .HasOne(x => x.Author)
                 .WithMany()
-                .HasForeignKey(x => x.AuthorId);
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Test>()
                 .HasOne(x => x.GroupOfTests)
                 .WithMany()
-                .HasForeignKey(x => x.GroupOfTestsId);
+                .HasForeignKey(x => x.GroupOfTestsId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Test>()
                 .HasMany(x => x.Questions)
                 .WithOne(x => x.Test)
-                .HasForeignKey(x => x.TestId);
+                .HasForeignKey(x => x.TestId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<Test>()
                 .HasMany(x => x.TestResponses)
                 .WithOne(x => x.Test)
                 .HasForeignKey(x => x.TestId);
 
             modelBuilder.Entity<GroupOfTests>()
-               .HasKey(x => x.Id);
+                .HasKey(x => x.Id);
             modelBuilder.Entity<GroupOfTests>()
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
@@ -112,43 +116,45 @@ namespace TestingSystem.Data
                 .HasMaxLength(60);
 
             modelBuilder.Entity<Question>()
-               .HasKey(x => x.Id);
+                .HasKey(x => x.Id);
             modelBuilder.Entity<Question>()
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Question>()
                 .HasMany(x => x.Answers)
                 .WithOne(x => x.Question)
-                .HasForeignKey(x => x.QuestionId);
+                .HasForeignKey(x => x.QuestionId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<VariantOfAnswer>()
-               .HasKey(x => x.Id);
+                .HasKey(x => x.Id);
             modelBuilder.Entity<VariantOfAnswer>()
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<TestResponse>()
-               .HasKey(x => x.Id);
+                .HasKey(x => x.Id);
             modelBuilder.Entity<TestResponse>()
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<TestResponse>()
-               .Property(x => x.PassedDate)
-               .HasConversion(x => x, x => DateTime.SpecifyKind(x, DateTimeKind.Utc));
+                .Property(x => x.PassedDate)
+                .HasConversion(x => x, x => DateTime.SpecifyKind(x, DateTimeKind.Utc));
             modelBuilder.Entity<TestResponse>()
                 .Property(x => x.PassedDate)
                 .IsRequired();
             modelBuilder.Entity<TestResponse>()
                 .HasOne(x => x.User)
                 .WithMany()
-                .HasForeignKey(x => x.UserId);
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<TestResponse>()
                 .HasMany(x => x.Answers)
                 .WithOne(x => x.TestResponse)
                 .HasForeignKey(x => x.TestResponseId);
 
             modelBuilder.Entity<QuestionAnswer>()
-               .HasKey(x => x.Id);
+                .HasKey(x => x.Id);
             modelBuilder.Entity<QuestionAnswer>()
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
@@ -160,6 +166,16 @@ namespace TestingSystem.Data
                 .HasMany(x => x.Variants)
                 .WithOne(x => x.QuestionAnswer)
                 .HasForeignKey(x => x.QuestionAnswerId);
+
+            modelBuilder.Entity<ChoosenVariant>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<ChoosenVariant>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<ChoosenVariant>()
+                .HasOne(x => x.VariantOfAnswer)
+                .WithMany()
+                .HasForeignKey(x => x.VariantOfAnswerId);
         }
     }
 }

@@ -11,6 +11,6 @@ namespace TestingSystem.Domain.TestResponses
         public Question Question { get; set; }
         public Guid TestResponseId { get; set; }
         public TestResponse TestResponse { get; set; }
-        public HashSet<VariantOfAnswer> Variants { get; set; }
+        public HashSet<ChoosenVariant> Variants { get; set; }
     }
 }

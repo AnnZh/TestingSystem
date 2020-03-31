@@ -19,5 +19,6 @@ namespace TestingSystem.Data
         public DbSet<VariantOfAnswer> VariantsOfAnswer { get; set; }
         public DbSet<TestResponse> TestResponses { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public DbSet<ChoosenVariant> ChoosenVariants { get; set; }
     }
 }
