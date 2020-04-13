@@ -32,7 +32,7 @@ namespace TestingSystem.Domain.Logic.Managers
             }
 
             _testingSystemContext.Users.Remove(user);
-            await _testingSystemContext.SaveChangesAsync(default);
+            await _testingSystemContext.SaveChangesAsync(token);
         }
 
         public async Task<UserDTO> GetUserByIdAsync(Guid id, CancellationToken token = default)
@@ -79,7 +79,7 @@ namespace TestingSystem.Domain.Logic.Managers
             user.Password = _passwordHasher.HashPassword(user, userDto.Password);
             user.RoleId = (await _testingSystemContext.Roles.FirstOrDefaultAsync(r => r.Name == "User")).Id;
             await _testingSystemContext.Users.AddAsync(user);
-            await _testingSystemContext.SaveChangesAsync(default);
+            await _testingSystemContext.SaveChangesAsync(token);
             return _mapper.Map<UserDTO>(user);
         }
 
@@ -88,7 +88,7 @@ namespace TestingSystem.Domain.Logic.Managers
             var user = await _testingSystemContext.Users.FirstAsync(x => x.Id == userDto.Id, token);
 
             _mapper.Map(userDto, user);
-            await _testingSystemContext.SaveChangesAsync(default);
+            await _testingSystemContext.SaveChangesAsync(token);
 
             return userDto;
         }

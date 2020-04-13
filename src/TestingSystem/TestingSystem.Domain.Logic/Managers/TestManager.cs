@@ -22,7 +22,7 @@ namespace TestingSystem.Domain.Logic.Managers
         {
             var test = _mapper.Map<Test>(testDto);
             await _testingSystemContext.Tests.AddAsync(test);
-            await _testingSystemContext.SaveChangesAsync(default);
+            await _testingSystemContext.SaveChangesAsync(token);
             return _mapper.Map<TestDTO>(test);
         }
 
@@ -36,7 +36,7 @@ namespace TestingSystem.Domain.Logic.Managers
             }
 
             _testingSystemContext.Tests.Remove(test);
-            await _testingSystemContext.SaveChangesAsync(default);
+            await _testingSystemContext.SaveChangesAsync(token);
         }
 
         public async Task<TestDTO> GetTestByIdAsync(Guid id, CancellationToken token = default)
@@ -66,7 +66,7 @@ namespace TestingSystem.Domain.Logic.Managers
             var user = await _testingSystemContext.Tests.FirstAsync(x => x.Id == testDto.Id, token);
 
             _mapper.Map(testDto, user);
-            await _testingSystemContext.SaveChangesAsync(default);
+            await _testingSystemContext.SaveChangesAsync(token);
 
             return testDto;
         }
