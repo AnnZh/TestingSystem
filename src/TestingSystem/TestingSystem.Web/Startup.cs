@@ -35,10 +35,12 @@ namespace TestingSystem.Web
             
             services.AddOpenApiDocument();
             services.AddControllers();
-            services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddDbContext<ITestingSystemContext, TestingSystemContext>(options => options.UseSqlServer(Configuration.GetConnectionString("TestingSystemContext")));
-            //services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<ITestManager, TestManager>();
+            services.AddScoped<IQuestionManager, QuestionManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
